@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="RD-221.5080.236">
+    <data-source name="postgres@localhost" uuid="ea94abd4-d0c0-4705-a130-604a5b9fa13a">
+      <database-info product="PostgreSQL" version="14.2 (Debian 14.2-1.pgdg110+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.3.3" dbms="POSTGRES" exact-version="14.2" exact-driver-version="42.3">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>admin</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node negative="1">
+            <node kind="database" qname="@">
+              <node kind="schema" qname="@" />
+            </node>
+            <node kind="database">
+              <name qname="todolist-graphql-db" />
+              <name qname="typegraphql-example" />
+              <node kind="schema" qname="public" />
+            </node>
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="User Data Source" uuid="887705da-c448-496a-90d4-7252c3d98554">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="UNKNOWN" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

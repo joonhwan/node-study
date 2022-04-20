@@ -2,19 +2,16 @@ import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import Express from "express";
-import { buildSchema, Query, Resolver } from "type-graphql";
-
-@Resolver()
-class HelloResolver {
-  @Query(() => String)
-  async helloWorld() {
-    return "Hello World";
-  }
-}
+import { buildSchema } from "type-graphql";
+import { AppDataSource } from "./data-source";
+import { UserResolver } from "./resolvers/UserResolver";
 
 const main = async () => {
+  const ds = await AppDataSource.initialize();
+  ds.synchronize();
+
   const schema = await buildSchema({
-    resolvers: [HelloResolver],
+    resolvers: [UserResolver],
   });
   const apolloServer = new ApolloServer({
     schema,
