@@ -9,6 +9,7 @@ import {
 } from "type-graphql";
 import * as bcrypt from "bcryptjs";
 import { User } from "../entity/User";
+import { UserRegisterInput } from "./inputs/UserRegisterInput";
 
 @Resolver((_of) => User)
 export class UserResolver {
@@ -17,18 +18,18 @@ export class UserResolver {
     return "Hello World";
   }
 
-  @FieldResolver()
-  name(@Root() parent: User): string {
-    return `${parent.firstName} ${parent.lastName}`;
+  // @FieldResolver()
+  // name(@Root() parent: User): string {
+  //   return `${parent.firstName} ${parent.lastName}`;
+  // }
+  @Query(() => [User])
+  async users(): Promise<User[]> {
+    return await User.find({});
   }
 
   @Mutation(() => User)
-  async register(
-    @Arg("firstName") firstName: string,
-    @Arg("lastName") lastName: string,
-    @Arg("email") email: string,
-    @Arg("password") password: string
-  ): Promise<User> {
+  async register(@Arg("data") data: UserRegisterInput): Promise<User> {
+    const { email, firstName, lastName, password } = data;
     const hashedPassword = await bcrypt.hash(password, 12);
     const user = await User.create({
       firstName,
