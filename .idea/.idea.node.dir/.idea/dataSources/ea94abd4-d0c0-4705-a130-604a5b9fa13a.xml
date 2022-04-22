@@ -3,9 +3,17 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.38">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>825</IntrospectionStateNumber>
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+13756||-9223372036854775808|c|G
+13756||10|c|G
+13756||10|C|G
+13756||10|T|G</Grants>
+      <IntrospectionStateNumber>840</IntrospectionStateNumber>
       <ServerVersion>14.2</ServerVersion>
-      <StartupTime>1650461706</StartupTime>
+      <StartupTime>1650632778</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1400,7 +1408,6 @@ true posixrules
 13391||10|C|G
 13391||-9223372036854775808|U|G
 13391||10|U|G</Grants>
-      <IntrospectionStateNumber>820</IntrospectionStateNumber>
       <ObjectId>13757</ObjectId>
       <OwnerName>admin</OwnerName>
     </database>
@@ -1415,7 +1422,6 @@ true posixrules
 13391||10|C|G
 13391||-9223372036854775808|U|G
 13391||10|U|G</Grants>
-      <IntrospectionStateNumber>823</IntrospectionStateNumber>
       <ObjectId>16385</ObjectId>
       <Relations>sequence|table|16402|16403|1
 </Relations>
@@ -1432,7 +1438,7 @@ true posixrules
 13391||10|C|G
 13391||-9223372036854775808|U|G
 13391||10|U|G</Grants>
-      <IntrospectionStateNumber>826</IntrospectionStateNumber>
+      <IntrospectionStateNumber>841</IntrospectionStateNumber>
       <ObjectId>16415</ObjectId>
       <Relations>sequence|table|16421|16422|1
 </Relations>
@@ -4855,7 +4861,6 @@ true posixrules
     <schema id="264" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>820</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>admin</OwnerName>
@@ -8222,7 +8227,6 @@ true posixrules
     <schema id="509" parent="4" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>823</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>admin</OwnerName>
@@ -11589,7 +11593,7 @@ true posixrules
     <schema id="754" parent="5" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>826</IntrospectionStateNumber>
+      <IntrospectionStateNumber>841</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>admin</OwnerName>
@@ -11618,19 +11622,25 @@ true posixrules
       <StateNumber>827</StateNumber>
       <OwnerName>admin</OwnerName>
     </sequence>
-    <table id="759" parent="754" name="typeorm_metadata">
+    <table id="759" parent="754" name="session">
+      <ObjectId>16432</ObjectId>
+      <StateNumber>836</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>admin</OwnerName>
+    </table>
+    <table id="760" parent="754" name="typeorm_metadata">
       <ObjectId>16416</ObjectId>
       <StateNumber>827</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>admin</OwnerName>
     </table>
-    <table id="760" parent="754" name="user">
+    <table id="761" parent="754" name="user">
       <ObjectId>16422</ObjectId>
       <StateNumber>827</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>admin</OwnerName>
     </table>
-    <column id="761" parent="756" name="id">
+    <column id="762" parent="756" name="id">
       <DataType>integer|0s</DataType>
       <DefaultExpression>nextval(&apos;task_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -11638,7 +11648,7 @@ true posixrules
       <StateNumber>746</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="762" parent="756" name="createdAt">
+    <column id="763" parent="756" name="createdAt">
       <DataType>timestamp|0s</DataType>
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
@@ -11646,7 +11656,7 @@ true posixrules
       <StateNumber>746</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="763" parent="756" name="updatedAt">
+    <column id="764" parent="756" name="updatedAt">
       <DataType>timestamp|0s</DataType>
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
@@ -11654,21 +11664,21 @@ true posixrules
       <StateNumber>746</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="764" parent="756" name="title">
+    <column id="765" parent="756" name="title">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>746</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="765" parent="756" name="isComplete">
+    <column id="766" parent="756" name="isComplete">
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>746</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <index id="766" parent="756" name="PK_fb213f79ee45060ba925ecd576e">
+    <index id="767" parent="756" name="PK_fb213f79ee45060ba925ecd576e">
       <ColNames>id</ColNames>
       <ObjectId>16411</ObjectId>
       <Primary>1</Primary>
@@ -11676,88 +11686,135 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="767" parent="756" name="PK_fb213f79ee45060ba925ecd576e">
+    <key id="768" parent="756" name="PK_fb213f79ee45060ba925ecd576e">
       <ColNames>id</ColNames>
       <ObjectId>16412</ObjectId>
       <Primary>1</Primary>
       <StateNumber>746</StateNumber>
       <UnderlyingIndexId>16411</UnderlyingIndexId>
     </key>
-    <column id="768" parent="757" name="type">
+    <column id="769" parent="757" name="type">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>742</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="769" parent="757" name="database">
+    <column id="770" parent="757" name="database">
       <DataType>varchar|0s</DataType>
       <Position>2</Position>
       <StateNumber>742</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="770" parent="757" name="schema">
+    <column id="771" parent="757" name="schema">
       <DataType>varchar|0s</DataType>
       <Position>3</Position>
       <StateNumber>742</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="771" parent="757" name="table">
+    <column id="772" parent="757" name="table">
       <DataType>varchar|0s</DataType>
       <Position>4</Position>
       <StateNumber>742</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="772" parent="757" name="name">
+    <column id="773" parent="757" name="name">
       <DataType>varchar|0s</DataType>
       <Position>5</Position>
       <StateNumber>742</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="773" parent="757" name="value">
+    <column id="774" parent="757" name="value">
       <DataType>text|0s</DataType>
       <Position>6</Position>
       <StateNumber>742</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="774" parent="759" name="type">
+    <column id="775" parent="759" name="sid">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>836</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="776" parent="759" name="sess">
+      <DataType>json|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>836</StateNumber>
+      <TypeId>114</TypeId>
+    </column>
+    <column id="777" parent="759" name="expire">
+      <DataType>timestamp(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>836</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <index id="778" parent="759" name="session_pkey">
+      <ColNames>sid</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16437</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>837</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <index id="779" parent="759" name="IDX_session_expire">
+      <ColNames>expire</ColNames>
+      <ObjectId>16439</ObjectId>
+      <StateNumber>838</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="780" parent="759" name="session_pkey">
+      <ColNames>sid</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16438</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>837</StateNumber>
+      <UnderlyingIndexId>16437</UnderlyingIndexId>
+    </key>
+    <column id="781" parent="760" name="type">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="775" parent="759" name="database">
+    <column id="782" parent="760" name="database">
       <DataType>varchar|0s</DataType>
       <Position>2</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="776" parent="759" name="schema">
+    <column id="783" parent="760" name="schema">
       <DataType>varchar|0s</DataType>
       <Position>3</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="777" parent="759" name="table">
+    <column id="784" parent="760" name="table">
       <DataType>varchar|0s</DataType>
       <Position>4</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="778" parent="759" name="name">
+    <column id="785" parent="760" name="name">
       <DataType>varchar|0s</DataType>
       <Position>5</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="779" parent="759" name="value">
+    <column id="786" parent="760" name="value">
       <DataType>text|0s</DataType>
       <Position>6</Position>
       <StateNumber>827</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="780" parent="760" name="id">
+    <column id="787" parent="761" name="id">
       <DataType>integer|0s</DataType>
       <DefaultExpression>nextval(&apos;user_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -11765,35 +11822,35 @@ true posixrules
       <StateNumber>827</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="781" parent="760" name="firstName">
+    <column id="788" parent="761" name="firstName">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="782" parent="760" name="lastName">
+    <column id="789" parent="761" name="lastName">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="783" parent="760" name="email">
+    <column id="790" parent="761" name="email">
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>827</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="784" parent="760" name="password">
+    <column id="791" parent="761" name="password">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>827</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="785" parent="760" name="PK_cace4a159ff9f2512dd42373760">
+    <index id="792" parent="761" name="PK_cace4a159ff9f2512dd42373760">
       <ColNames>id</ColNames>
       <ObjectId>16428</ObjectId>
       <Primary>1</Primary>
@@ -11801,7 +11858,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="786" parent="760" name="UQ_e12875dfb3b1d92d7d7c5377e22">
+    <index id="793" parent="761" name="UQ_e12875dfb3b1d92d7d7c5377e22">
       <ColNames>email</ColNames>
       <ObjectId>16430</ObjectId>
       <StateNumber>827</StateNumber>
@@ -11811,14 +11868,14 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="787" parent="760" name="PK_cace4a159ff9f2512dd42373760">
+    <key id="794" parent="761" name="PK_cace4a159ff9f2512dd42373760">
       <ColNames>id</ColNames>
       <ObjectId>16429</ObjectId>
       <Primary>1</Primary>
       <StateNumber>827</StateNumber>
       <UnderlyingIndexId>16428</UnderlyingIndexId>
     </key>
-    <key id="788" parent="760" name="UQ_e12875dfb3b1d92d7d7c5377e22">
+    <key id="795" parent="761" name="UQ_e12875dfb3b1d92d7d7c5377e22">
       <ColNames>email</ColNames>
       <ObjectId>16431</ObjectId>
       <StateNumber>827</StateNumber>
