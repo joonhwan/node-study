@@ -1,15 +1,19 @@
 import {
   Resolver,
-  Query,
   Mutation,
   Arg,
-  FieldResolver,
-  Root, Ctx,
+  Ctx,
   //ResolverInterface,
 } from "type-graphql";
 import {User} from "@/entity/User";
 import bcrypt from "bcryptjs";
 import {MyContext} from "@/types/MyContext";
+
+declare module "express-session" {
+  interface SessionData {
+    userId: number,
+  }
+}
 
 @Resolver()
 export class LogInResolver {
@@ -29,18 +33,22 @@ export class LogInResolver {
     if(!valid) {
       return null;
     }
-    console.log("found user : ", user);
-    console.log("curr session : ", ctx.req.session);
+    // console.log("found user : ", user);
+    // console.log("curr session : ", ctx.req.session);
 
-    (ctx.req.session as any).user = {
-      id: user.id,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-    }
-    // ctx.req.session.save()
+    ctx.req.session.userId = user.id
+    ctx.req.session.save();
     
     return user;
   }
-
+  @Mutation(() => User, {nullable: true})
+  async logout(@Ctx() ctx:MyContext) {
+    const userId = ctx.req.session.userId;
+    if(userId) {
+      ctx.req.session.destroy(err => {
+        console.log(`logout error : ${err}`);
+      });
+    }
+  }
+  
 }
