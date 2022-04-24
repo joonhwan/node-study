@@ -11,20 +11,22 @@ import {AppDataSource} from "@/data-source";
 import {UserResolver} from "@/gql/resolvers/UserResolver";
 import {LogInResolver} from "@/gql/resolvers/LogInResolver";
 import {MeResolver} from "@/gql/resolvers/MeResolver";
+import {sendEmail} from "@/utils/sendEmail";
 
 const main = async () => {
+  
   const ds = await AppDataSource.initialize();
   await ds.synchronize();
 
   const schema = await buildSchema({
-    resolvers: [UserResolver, LogInResolver, MeResolver],
+    resolvers: [ __dirname + "/gql/resolvers/**/*.ts" ], //[UserResolver, LogInResolver, MeResolver],
     authChecker: (resolverData, _roles) => {
-      const { context, info, root, args} = resolverData;
+      const {context, info, root, args} = resolverData;
       // here we can read the user from context
       // and check his permission in the db against the `roles` argument
       // that comes from the `@Authorized` decorator, eg. ["ADMIN", "MODERATOR"]
       const session = context.req.session;
-      if(session.userId) { 
+      if (session.userId) {
         return true;
       }
 
@@ -35,14 +37,14 @@ const main = async () => {
     schema,
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     context: context => {
-      const { req } = context;
-      return { req };
+      const {req} = context;
+      return {req};
     },
   });
   await apolloServer.start();
 
   const app = Express();
-  
+
   app.use(cors({
     credentials: true,
     origin: "http://localhost:3000"
@@ -51,7 +53,7 @@ const main = async () => {
     session({
       secret: "asdfasdfasdfasdf",
       cookie: {
-        httpOnly: true, 
+        httpOnly: true,
         secure: false, // https 를 사용할 때만 true ?!
         maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
         sameSite: "lax", // secure= true 인 경우에는 "None"
@@ -67,8 +69,10 @@ const main = async () => {
   });
 
   app.listen(4000, () => {
-    console.log("server started on http://localhost:4000");
+    console.log("server started on http://localhost:4000/graphql");
   });
 };
 
-main().then(_ => console.log("**********"));
+main().then(_ => {
+  console.log("**********************")
+});
