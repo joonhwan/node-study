@@ -1,5 +1,5 @@
 import { IsEmail, Length } from "class-validator";
-import { isEmailAlreadyExists } from "@/validators/isEmailAreadyExists";
+import { isEmailAlreadyExists } from "@/gql/validators/isEmailAreadyExists";
 import { Field, InputType } from "type-graphql";
 
 @InputType()

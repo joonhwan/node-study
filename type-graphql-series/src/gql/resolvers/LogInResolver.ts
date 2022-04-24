@@ -7,11 +7,12 @@ import {
 } from "type-graphql";
 import {User} from "@/entity/User";
 import bcrypt from "bcryptjs";
-import {MyContext} from "@/types/MyContext";
+import {MyContext} from "@/gql/types/MyContext";
 
 declare module "express-session" {
   interface SessionData {
     userId: number,
+    userName: string,
   }
 }
 
@@ -36,7 +37,8 @@ export class LogInResolver {
     // console.log("found user : ", user);
     // console.log("curr session : ", ctx.req.session);
 
-    ctx.req.session.userId = user.id
+    ctx.req.session.userId = user.id;
+    ctx.req.session.userName = user.name(user);
     ctx.req.session.save();
     
     return user;

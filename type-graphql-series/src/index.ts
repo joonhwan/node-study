@@ -8,9 +8,9 @@ import cors from "cors";
 
 import {buildSchema} from "type-graphql";
 import {AppDataSource} from "@/data-source";
-import {UserResolver} from "@/resolvers/UserResolver";
-import {LogInResolver} from "@/resolvers/LogInResolver";
-import {MeResolver} from "@/resolvers/MeResolver";
+import {UserResolver} from "@/gql/resolvers/UserResolver";
+import {LogInResolver} from "@/gql/resolvers/LogInResolver";
+import {MeResolver} from "@/gql/resolvers/MeResolver";
 
 const main = async () => {
   const ds = await AppDataSource.initialize();
@@ -18,6 +18,18 @@ const main = async () => {
 
   const schema = await buildSchema({
     resolvers: [UserResolver, LogInResolver, MeResolver],
+    authChecker: (resolverData, _roles) => {
+      const { context, info, root, args} = resolverData;
+      // here we can read the user from context
+      // and check his permission in the db against the `roles` argument
+      // that comes from the `@Authorized` decorator, eg. ["ADMIN", "MODERATOR"]
+      const session = context.req.session;
+      if(session.userId) { 
+        return true;
+      }
+
+      return false; // access is denied
+    }
   });
   const apolloServer = new ApolloServer({
     schema,
@@ -25,7 +37,7 @@ const main = async () => {
     context: context => {
       const { req } = context;
       return { req };
-    }
+    },
   });
   await apolloServer.start();
 
