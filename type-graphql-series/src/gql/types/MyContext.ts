@@ -1,4 +1,4 @@
-import {Request} from "express";
+import {Request, Response} from "express";
 
 
 declare module "express-session" {
@@ -10,4 +10,5 @@ declare module "express-session" {
 
 export interface MyContext {
   req: Request
+  res: Response
 }

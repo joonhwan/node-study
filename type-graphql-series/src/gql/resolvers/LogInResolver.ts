@@ -41,14 +41,28 @@ export class LogInResolver {
     return user;
   }
 
-  @Mutation(() => User, {nullable: true})
+  @Mutation(() => Boolean)
   async logout(@Ctx() ctx: MyContext) {
-    const userId = ctx.req.session.userId;
-    if (userId) {
+    // const userId = ctx.req.session.userId;
+    // if (userId) {
+    //   ctx.req.session.destroy(err => {
+    //     console.log(`logout error : ${err}`);
+    //   });
+    // }
+    return new Promise<boolean>((res, rej) => {
+      const userId = ctx.req.session.userId;
+      if (!userId) {
+        return res(false)
+      }
       ctx.req.session.destroy(err => {
-        console.log(`logout error : ${err}`);
-      });
-    }
+        if (err) {
+          console.log(`logout error : ${err}`);
+          rej(err)
+        }
+        ctx.res.clearCookie('qid');
+        return res(true)
+      })
+    })
   }
 
 }
