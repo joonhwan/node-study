@@ -1,15 +1,15 @@
 import {Arg, Ctx, Mutation, Query, Resolver, UseMiddleware,} from "type-graphql";
 import * as bcrypt from "bcryptjs";
-import {User} from "@/entity/User";
+import {User} from "@/app/entity/User";
 import {UserRegisterInput} from "./inputs/UserRegisterInput";
-import {isAuth} from "@/gql/middleware/isAuth";
-import {MyContext} from "@/gql/types/MyContext";
-import {logger} from "@/gql/middleware/logger";
-import {sendEmail} from "@/utils/sendEmail";
-import {createConfirmationUrl} from "@/utils/createConfirmationUrl";
-import {UserConfirmation} from "@/entity/UserConfirmation";
-import {PasswordReset} from "@/entity/PasswordReset";
-import {ChangePasswordInput} from "@/gql/resolvers/inputs/ChangePasswordInput";
+import {isAuth} from "@/app/gql/middleware/isAuth";
+import {MyContext} from "@/app/gql/types/MyContext";
+import {logger} from "@/app/gql/middleware/logger";
+import {sendEmail} from "@/app/utils/sendEmail";
+import {createConfirmationUrl} from "@/app/utils/createConfirmationUrl";
+import {UserConfirmation} from "@/app/entity/UserConfirmation";
+import {PasswordReset} from "@/app/entity/PasswordReset";
+import {ChangePasswordInput} from "@/app/gql/resolvers/inputs/ChangePasswordInput";
 
 @Resolver(() => User)
 export class UserResolver {

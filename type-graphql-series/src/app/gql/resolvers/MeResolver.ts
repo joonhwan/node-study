@@ -1,6 +1,6 @@
 import {Ctx, Query, Resolver,} from "type-graphql";
-import {User} from "@/entity/User";
-import {MyContext} from "@/gql/types/MyContext";
+import {User} from "@/app/entity/User";
+import {MyContext} from "@/app/gql/types/MyContext";
 
 
 declare module "express-session" {

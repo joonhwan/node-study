@@ -1,7 +1,7 @@
 import { IsEmail, Length } from "class-validator";
-import { isEmailAlreadyExists } from "@/gql/validators/isEmailAreadyExists";
+import { isEmailAlreadyExists } from "@/app/gql/validators/isEmailAreadyExists";
 import { Field, InputType } from "type-graphql";
-import withPassword from "@/gql/resolvers/mixins/withPassword";
+import withPassword from "@/app/gql/resolvers/mixins/withPassword";
 // import {PasswordInput} from "@/gql/resolvers/inputs/PasswordInput";
 
 @InputType()

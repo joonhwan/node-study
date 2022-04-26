@@ -1,6 +1,6 @@
 import {v4} from "uuid";
-import {UserConfirmation} from "@/entity/UserConfirmation";
-import {User} from "@/entity/User";
+import {UserConfirmation} from "@/app/entity/UserConfirmation";
+import {User} from "@/app/entity/User";
 
 export const createConfirmationUrl = async (userId: number) => {
   // expire되는 설정 같은게 있을 수 있다.

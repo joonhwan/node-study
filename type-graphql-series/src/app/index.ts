@@ -7,8 +7,8 @@ import {CreateSessionStore} from "./SessionStore";
 import cors from "cors";
 
 import {buildSchema} from "type-graphql";
-import {AppDataSource} from "@/data-source";
-import {createSchema} from "@/utils/createSchema";
+import {AppDataSource} from "@/app/data-source";
+import {createSchema} from "@/app/utils/createSchema";
 // import {UserResolver} from "@/gql/resolvers/UserResolver";
 // import {LogInResolver} from "@/gql/resolvers/LogInResolver";
 // import {MeResolver} from "@/gql/resolvers/MeResolver";

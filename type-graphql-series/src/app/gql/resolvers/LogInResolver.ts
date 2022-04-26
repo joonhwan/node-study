@@ -5,9 +5,9 @@ import {
   Ctx,
   //ResolverInterface,
 } from "type-graphql";
-import {User} from "@/entity/User";
+import {User} from "@/app/entity/User";
 import bcrypt from "bcryptjs";
-import {MyContext} from "@/gql/types/MyContext";
+import {MyContext} from "@/app/gql/types/MyContext";
 
 @Resolver()
 export class LogInResolver {
