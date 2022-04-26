@@ -8,33 +8,19 @@ import cors from "cors";
 
 import {buildSchema} from "type-graphql";
 import {AppDataSource} from "@/data-source";
-import {UserResolver} from "@/gql/resolvers/UserResolver";
-import {LogInResolver} from "@/gql/resolvers/LogInResolver";
-import {MeResolver} from "@/gql/resolvers/MeResolver";
-import {sendEmail} from "@/utils/sendEmail";
+import {createSchema} from "@/utils/createSchema";
+// import {UserResolver} from "@/gql/resolvers/UserResolver";
+// import {LogInResolver} from "@/gql/resolvers/LogInResolver";
+// import {MeResolver} from "@/gql/resolvers/MeResolver";
+// import {sendEmail} from "@/utils/sendEmail";
 
 const main = async () => {
-  
+  console.log("AppDataSource=", AppDataSource)
   const ds = await AppDataSource.initialize();
   await ds.synchronize();
 
-  const schema = await buildSchema({
-    resolvers: [ __dirname + "/gql/resolvers/**/*.ts" ], //[UserResolver, LogInResolver, MeResolver],
-    authChecker: (resolverData, _roles) => {
-      const {context, info, root, args} = resolverData;
-      // here we can read the user from context
-      // and check his permission in the db against the `roles` argument
-      // that comes from the `@Authorized` decorator, eg. ["ADMIN", "MODERATOR"]
-      const session = context.req.session;
-      if (session.userId) {
-        return true;
-      }
-
-      return false; // access is denied
-    }
-  });
   const apolloServer = new ApolloServer({
-    schema,
+    schema: await createSchema(),
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     context: context => {
       const {req, res} = context;
