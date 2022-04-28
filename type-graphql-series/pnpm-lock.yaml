@@ -7,7 +7,6 @@ specifiers:
   '@types/cors': ^2.8.12
   '@types/express': ^4.17.13
   '@types/express-session': ^1.17.4
-  '@types/faker': ^6.6.9
   '@types/jest': ^27.4.1
   '@types/node': ^17.0.25
   '@types/nodemailer': ^6.4.4
@@ -26,6 +25,7 @@ specifiers:
   nodemailer: ^6.7.3
   nodemon: ^2.0.15
   pg: ^8.7.3
+  prettier: 2.6.2
   reflect-metadata: ^0.1.13
   ts-jest: ^27.1.4
   ts-node: ^10.7.0
@@ -61,13 +61,13 @@ devDependencies:
   '@types/cors': 2.8.12
   '@types/express': 4.17.13
   '@types/express-session': 1.17.4
-  '@types/faker': 6.6.9
   '@types/jest': 27.4.1
   '@types/node': 17.0.29
   '@types/nodemailer': 6.4.4
   '@types/uuid': 8.3.4
   jest: 27.5.1_ts-node@10.7.0
   nodemon: 2.0.15
+  prettier: 2.6.2
   ts-jest: 27.1.4_9985e1834e803358b7be1e6ce5ca0eea
   ts-node: 10.7.0_5281fe59fc32158e106b8b5e2bebb315
   ts-node-dev: 1.1.8_typescript@4.6.3
@@ -907,13 +907,6 @@ packages:
       '@types/express-serve-static-core': 4.17.28
       '@types/qs': 6.9.7
       '@types/serve-static': 1.13.10
-
-  /@types/faker/6.6.9:
-    resolution: {integrity: sha512-Y9YYm5L//8ooiiknO++4Gr539zzdI0j3aXnOBjo1Vk+kTvffY10GuE2wn78AFPECwZ5MYGTjiDVw1naLLdDimw==}
-    deprecated: This is a stub types definition. faker provides its own type definitions, so you do not need this installed.
-    dependencies:
-      faker: 6.6.6
-    dev: true
 
   /@types/glob/7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
@@ -2037,10 +2030,6 @@ packages:
       utils-merge: 1.0.1
       vary: 1.1.2
     dev: false
-
-  /faker/6.6.6:
-    resolution: {integrity: sha512-9tCqYEDHI5RYFQigXFwF1hnCwcWCOJl/hmll0lr5D2Ljjb0o4wphb69wikeJDz5qCEzXCoPvG6ss5SDP6IfOdg==}
-    dev: true
 
   /fast-json-stable-stringify/2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
@@ -3577,6 +3566,12 @@ packages:
   /prepend-http/2.0.0:
     resolution: {integrity: sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=}
     engines: {node: '>=4'}
+    dev: true
+
+  /prettier/2.6.2:
+    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-format/27.5.1:
