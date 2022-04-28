@@ -14,9 +14,13 @@
             <node kind="database" qname="postgres">
               <node kind="schema" qname="public" />
             </node>
-            <node kind="database">
-              <name qname="typegraphql-example" />
-              <name qname="typegraphql-test" />
+            <node kind="database" qname="typegraphql-test">
+              <node kind="schema">
+                <name qname="@" />
+                <name qname="public" />
+              </node>
+            </node>
+            <node kind="database" qname="typegraphql-example">
               <node kind="schema" qname="@" />
             </node>
           </node>

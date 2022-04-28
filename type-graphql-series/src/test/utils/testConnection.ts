@@ -29,7 +29,7 @@ export const testDataSource = async (drop: boolean = false) => {
       }
     }
     // console.log("synchronizing...")
-    await TestDataSource.synchronize()
+    await TestDataSource.synchronize() 
   } else {
     // console.log("initialized !?")
   }
