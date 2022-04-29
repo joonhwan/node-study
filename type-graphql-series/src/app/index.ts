@@ -1,40 +1,41 @@
 import "reflect-metadata";
-import {ApolloServer} from "apollo-server-express";
-import {ApolloServerPluginLandingPageGraphQLPlayground} from "apollo-server-core";
+import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import Express from "express";
 import session from "express-session";
-import {CreateSessionStore} from "./SessionStore";
+import { CreateSessionStore } from "./SessionStore";
 import cors from "cors";
 
-import {buildSchema} from "type-graphql";
-import {AppDataSource} from "@/app/data-source";
-import {createSchema} from "@/app/utils/createSchema";
+import { buildSchema } from "type-graphql";
+import { AppDataSource } from "@/app/data-source";
+import { createSchema } from "@/app/utils/createSchema";
 // import {UserResolver} from "@/gql/resolvers/UserResolver";
 // import {LogInResolver} from "@/gql/resolvers/LogInResolver";
 // import {MeResolver} from "@/gql/resolvers/MeResolver";
 // import {sendEmail} from "@/utils/sendEmail";
 
 const main = async () => {
-  console.log("AppDataSource=", AppDataSource)
-  const ds = await AppDataSource.initialize();
-  await ds.synchronize();
+  // console.log("AppDataSource=", AppDataSource)
+  await AppDataSource.initialize();
 
   const apolloServer = new ApolloServer({
     schema: await createSchema(),
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-    context: context => {
-      const {req, res} = context;
-      return {req, res};
+    context: (context) => {
+      const { req, res } = context;
+      return { req, res };
     },
   });
   await apolloServer.start();
 
   const app = Express();
 
-  app.use(cors({
-    credentials: true,
-    origin: "http://localhost:3000"
-  }));
+  app.use(
+    cors({
+      credentials: true,
+      origin: "http://localhost:3000",
+    })
+  );
   app.use(
     session({
       secret: "asdfasdfasdfasdf",
@@ -59,6 +60,6 @@ const main = async () => {
   });
 };
 
-main().then(_ => {
-  console.log("**********************")
+main().then((_) => {
+  console.log("**********************");
 });
