@@ -9,6 +9,7 @@ import cors from "cors";
 import { buildSchema } from "type-graphql";
 import { AppDataSource } from "@/app/data-source";
 import { createSchema } from "@/app/utils/createSchema";
+import { graphqlUploadExpress } from "graphql-upload";
 // import {UserResolver} from "@/gql/resolvers/UserResolver";
 // import {LogInResolver} from "@/gql/resolvers/LogInResolver";
 // import {MeResolver} from "@/gql/resolvers/MeResolver";
@@ -51,6 +52,7 @@ const main = async () => {
       store: CreateSessionStore(session),
     })
   );
+  app.use(graphqlUploadExpress({ maxFiles: 10, maxFileSize: 100000000 }));
   apolloServer.applyMiddleware({
     app,
   });

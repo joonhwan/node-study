@@ -1,0 +1,23 @@
+# curl 'http://localhost:4000/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4000' --data-binary '{"query":"mutation AddProfilePicture($picture: Upload!) {\n  addProfilePicture(picture: $picture)\n}\n\n\n# mutation UploadImage($file: Upload!) {\n#  singleUpload(file: $file)\n# }"}' --compressed
+POST /graphql HTTP/1.1
+Host: localhost:4000
+Cache-Control: no-cache
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="operations"
+
+{"query":"mutation AddProfilePicture($picture: Upload!) {\n  addProfilePicture(picture: $picture)\n}"}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="map"
+
+{ "0": ["variables.picture"] } 
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="0"; filename="avartar.png"
+Content-Type: image/png
+
+
+< /Users/vine/Downloads/avartar.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###

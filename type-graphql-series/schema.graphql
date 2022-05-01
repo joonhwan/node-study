@@ -1,0 +1,86 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  addProfilePicture(picture: Upload!): Boolean!
+  changePassword(data: ChangePasswordInput!): Boolean
+  confirm(confirmId: String!): Boolean!
+  createProduct(inputProduct: ProductCreateInputType!): Product!
+  createUser(inputUser: UserCreateInputType!): User!
+  login(email: String!, password: String!): User
+  logout: Boolean!
+  register(data: UserCreateInputType!): User!
+  removeProduct(id: Int!): Int!
+  removeUser(id: Int!): Int!
+  resetPassword(email: String!): Boolean!
+}
+
+type PaginatedProductResponse {
+  items: [Product!]!
+  page: Int!
+  total: Int!
+  totalPage: Int!
+}
+
+type PaginatedUserResponse {
+  items: [User!]!
+  page: Int!
+  total: Int!
+  totalPage: Int!
+}
+
+type Product {
+  amount: Int!
+  id: Int!
+  name: String!
+  price: Float!
+}
+
+type Query {
+  hello: String!
+  me: User
+  product(pagination: PaginationInputType): PaginatedProductResponse!
+  users(pagination: PaginationInputType): PaginatedUserResponse!
+}
+
+type User {
+  email: String!
+  firstName: String!
+  id: Int!
+  lastName: String!
+  name: String!
+}
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload
+
+input ChangePasswordInput {
+  password: String!
+  token: String!
+}
+
+input PaginationInputType {
+  page: Int!
+  perPageCount: Int!
+}
+
+input PasswordInputType {
+  password: String!
+}
+
+input ProductCreateInputType {
+  amount: Int!
+  name: String!
+  price: Float!
+}
+
+input UserCreateInputType {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}

@@ -1,0 +1,14 @@
+{
+  users {
+    items {
+      id
+      email
+      firstName
+      lastName
+    }
+    page
+    total
+    totalPage
+  }
+  
+}
