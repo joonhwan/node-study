@@ -21,7 +21,7 @@ export class PaginationInputType {
 
   getSkipTake() {
     const page = Math.max(this.page, 0);
-    const perPageCount = Math.max(this.page, 1);
+    const perPageCount = Math.max(this.perPageCount, 1);
 
     return {
       skip: page * perPageCount,

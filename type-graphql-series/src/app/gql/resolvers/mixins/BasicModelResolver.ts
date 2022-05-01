@@ -13,6 +13,7 @@ import {
   IHavePaginationInfo,
   PaginationInputType,
 } from "@/app/gql/resolvers/inputs";
+import { GraphQLResolveInfo } from "graphql";
 
 @ArgsType()
 class PaginationArgs {
@@ -63,10 +64,20 @@ export function BasicModelResolver<
 
     protected async createPagedQueryResponse<T extends IHavePaginationInfo>(
       TResponseType: new () => T,
+      info: GraphQLResolveInfo,
       pagination?: PaginationInputType
     ): Promise<T> {
       const response = new TResponseType();
-      const total = await this.repository.count();
+      let total = 0;
+      if (false) {
+        console.log("📒 info : ", JSON.stringify(info, null, 2));
+      }
+      // if (info.fieldNodes.find((x) => x.name.value === "total")) {
+      //   console.log("counting ! 😳😳😳😳😳");
+      //   total = await this.repository.count();
+      // }
+      total = await this.repository.count();
+
       response.page = pagination?.page ?? 0;
       response.total = total;
       response.totalPage = pagination

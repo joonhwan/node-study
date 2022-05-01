@@ -1,14 +1,17 @@
 {
-  users {
+  users(pagination: {
+    page: 0
+    perPageCount: 2
+  }) {
+    totalPage
+    page
     items {
       id
       email
       firstName
       lastName
     }
-    page
-    total
-    totalPage
   }
+  
   
 }

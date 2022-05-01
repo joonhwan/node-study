@@ -1,6 +1,9 @@
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+  GraphQLRequestContext,
+} from "apollo-server-core";
 import Express from "express";
 import session from "express-session";
 import { CreateSessionStore } from "./SessionStore";
@@ -10,6 +13,12 @@ import { buildSchema } from "type-graphql";
 import { AppDataSource } from "@/app/data-source";
 import { createSchema } from "@/app/utils/createSchema";
 import { graphqlUploadExpress } from "graphql-upload";
+import { MyContext } from "@/app/gql/types/MyContext";
+import { createComplexityPlugin } from "graphql-query-complexity-apollo-plugin";
+import {
+  fieldExtensionsEstimator,
+  simpleEstimator,
+} from "graphql-query-complexity";
 // import {UserResolver} from "@/gql/resolvers/UserResolver";
 // import {LogInResolver} from "@/gql/resolvers/LogInResolver";
 // import {MeResolver} from "@/gql/resolvers/MeResolver";
@@ -19,9 +28,23 @@ const main = async () => {
   // console.log("AppDataSource=", AppDataSource)
   await AppDataSource.initialize();
 
+  const schema = await createSchema();
   const apolloServer = new ApolloServer({
-    schema: await createSchema(),
-    plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+    schema,
+    plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground(),
+      createComplexityPlugin({
+        schema,
+        estimators: [
+          fieldExtensionsEstimator(),
+          simpleEstimator({ defaultComplexity: 1 }),
+        ],
+        maximumComplexity: 1000,
+        onComplete: (complexity) => {
+          console.log("Query Complexity:", complexity);
+        },
+      }),
+    ],
     context: (context) => {
       const { req, res } = context;
       return { req, res };
